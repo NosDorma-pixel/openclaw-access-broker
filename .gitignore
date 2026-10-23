@@ -1,0 +1,17 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.log
+*.bak
+*.backup
+openclaw.json
+config.local.*
+credentials*
+cookies*
+sessions/
+.DS_Store
