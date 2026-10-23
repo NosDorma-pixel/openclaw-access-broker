@@ -1,0 +1,11 @@
+{
+  "allowDynamicAccounts": true,
+  "credentialTtlSeconds": 86400,
+  "ticketTtlSeconds": 600,
+  "accounts": {},
+  "quickTunnel": {
+    "enabled": true,
+    "executable": "/absolute/path/to/cloudflared",
+    "startupTimeoutMs": 25000
+  }
+}

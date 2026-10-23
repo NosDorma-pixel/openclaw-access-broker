@@ -1,0 +1,225 @@
+{
+  "id": "ssh-broker",
+  "name": "Access Broker",
+  "description": "Auto-detects temporary SSH, HTTPS API key/Basic, and HTTPS or SSH-tunneled web-admin credentials from one protected field and performs scoped operations without exposing secrets.",
+  "version": "0.8.1",
+  "activation": {
+    "onStartup": true
+  },
+  "commandAliases": [
+    {
+      "name": "accesslogin",
+      "kind": "runtime-slash"
+    }
+  ],
+  "contracts": {
+    "tools": [
+      "ssh_broker_probe",
+      "ssh_broker_disk_audit",
+      "ssh_broker_list_connections",
+      "ssh_broker_credential_status",
+      "ssh_broker_forget_credential",
+      "ssh_broker_list_dir",
+      "ssh_broker_read_file",
+      "ssh_broker_replace_file",
+      "access_broker_list_connections",
+      "access_broker_credential_status",
+      "access_broker_forget_credential",
+      "access_broker_http_request",
+      "access_broker_web_login",
+      "access_broker_web_get",
+      "ssh_broker_create_file",
+      "ssh_broker_mkdir",
+      "ssh_broker_move_file",
+      "ssh_broker_exec"
+    ]
+  },
+  "toolMetadata": {
+    "ssh_broker_list_connections": {
+      "optional": true
+    },
+    "ssh_broker_credential_status": {
+      "optional": true
+    },
+    "ssh_broker_forget_credential": {
+      "optional": true
+    },
+    "ssh_broker_probe": {
+      "optional": true
+    },
+    "ssh_broker_disk_audit": {
+      "optional": true
+    },
+    "ssh_broker_list_dir": {
+      "optional": true
+    },
+    "ssh_broker_read_file": {
+      "optional": true
+    },
+    "ssh_broker_replace_file": {
+      "optional": true
+    },
+    "access_broker_list_connections": {
+      "optional": true
+    },
+    "access_broker_credential_status": {
+      "optional": true
+    },
+    "access_broker_forget_credential": {
+      "optional": true
+    },
+    "access_broker_http_request": {
+      "optional": true
+    },
+    "access_broker_web_login": {
+      "optional": true
+    },
+    "access_broker_web_get": {
+      "optional": true
+    },
+    "ssh_broker_create_file": {
+      "optional": true
+    },
+    "ssh_broker_mkdir": {
+      "optional": true
+    },
+    "ssh_broker_move_file": {
+      "optional": true
+    },
+    "ssh_broker_exec": {
+      "optional": true
+    }
+  },
+  "uiHints": {
+    "accounts.*.password": {
+      "label": "SSH password",
+      "sensitive": true
+    },
+    "accounts.*.hostKeySha256": {
+      "label": "Pinned SSH host-key SHA-256"
+    }
+  },
+  "configContracts": {
+    "secretInputs": {
+      "paths": [
+        {
+          "path": "accounts.*.password",
+          "expected": "string",
+          "ownerKind": "capability"
+        }
+      ]
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "allowDynamicAccounts": {
+        "type": "boolean",
+        "default": false
+      },
+      "publicBaseUrl": {
+        "type": "string",
+        "format": "uri",
+        "pattern": "^https://[^/?#]+/?$"
+      },
+      "quickTunnel": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": false
+          },
+          "executable": {
+            "type": "string",
+            "pattern": "^/[^\\u0000]+$"
+          },
+          "startupTimeoutMs": {
+            "type": "integer",
+            "minimum": 5000,
+            "maximum": 60000,
+            "default": 25000
+          }
+        }
+      },
+      "credentialTtlSeconds": {
+        "type": "integer",
+        "minimum": 60,
+        "maximum": 604800,
+        "default": 86400
+      },
+      "ticketTtlSeconds": {
+        "type": "integer",
+        "minimum": 60,
+        "maximum": 1800,
+        "default": 600
+      },
+      "accounts": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "host",
+            "port",
+            "username",
+            "hostKeySha256",
+            "allowedRoots"
+          ],
+          "properties": {
+            "host": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 253
+            },
+            "port": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "username": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "password": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "hostKeySha256": {
+              "type": "string",
+              "minLength": 43,
+              "maxLength": 71
+            },
+            "allowedRoots": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 16,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^/[^\\u0000]*$",
+                "minLength": 2,
+                "maxLength": 4096
+              }
+            },
+            "readyTimeoutMs": {
+              "type": "integer",
+              "minimum": 1000,
+              "maximum": 60000,
+              "default": 15000
+            },
+            "maxFileBytes": {
+              "type": "integer",
+              "minimum": 1024,
+              "maximum": 8388608,
+              "default": 1048576
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "allowDynamicAccounts": true,
+  "publicBaseUrl": "https://access.example.com",
+  "credentialTtlSeconds": 86400,
+  "ticketTtlSeconds": 600,
+  "accounts": {}
+}

@@ -1,0 +1,10 @@
+{
+  "tools": {
+    "allow": [
+      "ssh_broker_list_connections",
+      "ssh_broker_list_dir",
+      "ssh_broker_read_file",
+      "ssh_broker_forget_credential"
+    ]
+  }
+}
