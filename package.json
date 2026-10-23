@@ -1,6 +1,6 @@
 {
   "name": "@local/openclaw-ssh-broker",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "private": true,
   "type": "module",
   "files": [
@@ -10,7 +10,10 @@
     "INSTALL.md",
     "SSH-EXEC-RU.md",
     "NOTICE.md",
-    "third-party-notices"
+    "third-party-notices",
+    "LICENSE",
+    "examples",
+    "RELEASE-NOTES.md"
   ],
   "dependencies": {
     "ssh2": "1.17.0",
@@ -27,5 +30,6 @@
       "pluginApi": ">=2026.8.1",
       "minGatewayVersion": ">=2026.8.1"
     }
-  }
+  },
+  "license": "MIT"
 }

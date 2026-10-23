@@ -2,7 +2,7 @@
 set -euo pipefail
 usage() {
   cat <<'HELP'
-Access Broker 0.8.1 — local npm-pack installer
+Access Broker 0.8.2 — local npm-pack installer
 Usage: bash install.sh [--dry-run] [--force] [--openclaw-bin PATH]
   --dry-run            Verify package and print command; no installation
   --force              Explicitly trust source AND permit replacement; back up first
@@ -26,7 +26,7 @@ while (($#)); do
   esac
 done
 ROOT=$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
-PACKAGE="$ROOT/releases/local-openclaw-ssh-broker-0.8.1.tgz"
+PACKAGE="$ROOT/releases/local-openclaw-ssh-broker-0.8.2.tgz"
 [[ -f "$PACKAGE" && -f "$ROOT/SHA256SUMS" ]] || fail 'Incomplete release: package or SHA256SUMS missing'
 command -v node >/dev/null 2>&1 || fail 'Node.js missing. Install the Node version supported by your OpenClaw first.'
 command -v npm >/dev/null 2>&1 || fail 'npm missing. Install the npm supplied with your Node distribution.'

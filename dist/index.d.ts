@@ -10,7 +10,7 @@ export type BrokerAccount = {
     readyTimeoutMs: number;
     maxFileBytes: number;
 };
-export declare const ACCESS_BROKER_VERSION = "0.8.1";
+export declare const ACCESS_BROKER_VERSION = "0.8.2";
 export declare function normalizeHostKeySha256(value: string): string;
 export declare function normalizeRemotePath(value: string): string;
 export declare function isPathWithinRoots(candidate: string, roots: string[]): boolean;

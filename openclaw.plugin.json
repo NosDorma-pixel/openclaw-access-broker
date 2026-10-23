@@ -2,7 +2,7 @@
   "id": "ssh-broker",
   "name": "Access Broker",
   "description": "Auto-detects temporary SSH, HTTPS API key/Basic, and HTTPS or SSH-tunneled web-admin credentials from one protected field and performs scoped operations without exposing secrets.",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "activation": {
     "onStartup": true
   },
